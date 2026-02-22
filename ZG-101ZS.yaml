@@ -1,9 +1,8 @@
 blueprint:
-  name: HOBEIAN ZG-101ZS - 4 buttons (Direct Device)
+  name: HOBEIAN ZG-101ZS - 4 buttons (ZHA)
   description: >
     Manages the actions of the HOBEIAN ZG-101ZS switch (1-4, single/double/hold).
-    Compatible with ZHA/Zigbee2MQTT when actions appear directly
-    as device triggers.
+    Compatible with ZHA integration using zha_event triggers.
   domain: automation
   input:
     remote:
@@ -92,77 +91,96 @@ mode: restart
 max_exceeded: silent
 
 trigger:
-  - platform: device
-    device_id: !input remote
-    domain: mqtt
-    type: action
-    subtype: 1_single
+  # Button 1 (endpoint 1)
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: !input remote
+      endpoint_id: 1
+      command: remote_button_short_press
     id: 1_single
-  - platform: device
-    device_id: !input remote
-    domain: mqtt
-    type: action
-    subtype: 1_double
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: !input remote
+      endpoint_id: 1
+      command: remote_button_double_press
     id: 1_double
-  - platform: device
-    device_id: !input remote
-    domain: mqtt
-    type: action
-    subtype: 1_hold
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: !input remote
+      endpoint_id: 1
+      command: remote_button_long_press
     id: 1_hold
-  - platform: device
-    device_id: !input remote
-    domain: mqtt
-    type: action
-    subtype: 2_single
+  
+  # Button 2 (endpoint 2)
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: !input remote
+      endpoint_id: 2
+      command: remote_button_short_press
     id: 2_single
-  - platform: device
-    device_id: !input remote
-    domain: mqtt
-    type: action
-    subtype: 2_double
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: !input remote
+      endpoint_id: 2
+      command: remote_button_double_press
     id: 2_double
-  - platform: device
-    device_id: !input remote
-    domain: mqtt
-    type: action
-    subtype: 2_hold
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: !input remote
+      endpoint_id: 2
+      command: remote_button_long_press
     id: 2_hold
-  - platform: device
-    device_id: !input remote
-    domain: mqtt
-    type: action
-    subtype: 3_single
+  
+  # Button 3 (endpoint 3)
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: !input remote
+      endpoint_id: 3
+      command: remote_button_short_press
     id: 3_single
-  - platform: device
-    device_id: !input remote
-    domain: mqtt
-    type: action
-    subtype: 3_double
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: !input remote
+      endpoint_id: 3
+      command: remote_button_double_press
     id: 3_double
-  - platform: device
-    device_id: !input remote
-    domain: mqtt
-    type: action
-    subtype: 3_hold
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: !input remote
+      endpoint_id: 3
+      command: remote_button_long_press
     id: 3_hold
-  - platform: device
-    device_id: !input remote
-    domain: mqtt
-    type: action
-    subtype: 4_single
+  
+  # Button 4 (endpoint 4)
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: !input remote
+      endpoint_id: 4
+      command: remote_button_short_press
     id: 4_single
-  - platform: device
-    device_id: !input remote
-    domain: mqtt
-    type: action
-    subtype: 4_double
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: !input remote
+      endpoint_id: 4
+      command: remote_button_double_press
     id: 4_double
-  - platform: device
-    device_id: !input remote
-    domain: mqtt
-    type: action
-    subtype: 4_hold
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: !input remote
+      endpoint_id: 4
+      command: remote_button_long_press
     id: 4_hold
 
 action:
