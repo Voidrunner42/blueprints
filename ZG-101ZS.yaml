@@ -1,0 +1,217 @@
+blueprint:
+  name: HOBEIAN ZG-101ZS - 4 buttons (Direct Device)
+  description: >
+    Manages the actions of the HOBEIAN ZG-101ZS switch (1-4, single/double/hold).
+    Compatible with ZHA/Zigbee2MQTT when actions appear directly
+    as device triggers.
+  domain: automation
+  input:
+    remote:
+      name: Switch
+      description: Choose your HOBEIAN switch
+      selector:
+        device: {}
+
+    button_1_single:
+      name: Button 1 - Single click
+      description: Actions executed when button 1 is pressed (single click)
+      default: []
+      selector:
+        action: {}
+    button_1_double:
+      name: Button 1 - Double click
+      description: Actions executed when button 1 is pressed (double click)
+      default: []
+      selector:
+        action: {}
+    button_1_hold:
+      name: Button 1 - Hold
+      description: Actions executed when button 1 is held
+      default: []
+      selector:
+        action: {}
+
+    button_2_single:
+      name: Button 2 - Single click
+      description: Actions executed when button 2 is pressed (single click)
+      default: []
+      selector:
+        action: {}
+    button_2_double:
+      name: Button 2 - Double click
+      description: Actions executed when button 2 is pressed (double click)
+      default: []
+      selector:
+        action: {}
+    button_2_hold:
+      name: Button 2 - Hold
+      description: Actions executed when button 2 is held
+      default: []
+      selector:
+        action: {}
+
+    button_3_single:
+      name: Button 3 - Single click
+      description: Actions executed when button 3 is pressed (single click)
+      default: []
+      selector:
+        action: {}
+    button_3_double:
+      name: Button 3 - Double click
+      description: Actions executed when button 3 is pressed (double click)
+      default: []
+      selector:
+        action: {}
+    button_3_hold:
+      name: Button 3 - Hold
+      description: Actions executed when button 3 is held
+      default: []
+      selector:
+        action: {}
+
+    button_4_single:
+      name: Button 4 - Single click
+      description: Actions executed when button 4 is pressed (single click)
+      default: []
+      selector:
+        action: {}
+    button_4_double:
+      name: Button 4 - Double click
+      description: Actions executed when button 4 is pressed (double click)
+      default: []
+      selector:
+        action: {}
+    button_4_hold:
+      name: Button 4 - Hold
+      description: Actions executed when button 4 is held
+      default: []
+      selector:
+        action: {}
+
+mode: restart
+max_exceeded: silent
+
+trigger:
+  - platform: device
+    device_id: !input remote
+    domain: mqtt
+    type: action
+    subtype: 1_single
+    id: 1_single
+  - platform: device
+    device_id: !input remote
+    domain: mqtt
+    type: action
+    subtype: 1_double
+    id: 1_double
+  - platform: device
+    device_id: !input remote
+    domain: mqtt
+    type: action
+    subtype: 1_hold
+    id: 1_hold
+  - platform: device
+    device_id: !input remote
+    domain: mqtt
+    type: action
+    subtype: 2_single
+    id: 2_single
+  - platform: device
+    device_id: !input remote
+    domain: mqtt
+    type: action
+    subtype: 2_double
+    id: 2_double
+  - platform: device
+    device_id: !input remote
+    domain: mqtt
+    type: action
+    subtype: 2_hold
+    id: 2_hold
+  - platform: device
+    device_id: !input remote
+    domain: mqtt
+    type: action
+    subtype: 3_single
+    id: 3_single
+  - platform: device
+    device_id: !input remote
+    domain: mqtt
+    type: action
+    subtype: 3_double
+    id: 3_double
+  - platform: device
+    device_id: !input remote
+    domain: mqtt
+    type: action
+    subtype: 3_hold
+    id: 3_hold
+  - platform: device
+    device_id: !input remote
+    domain: mqtt
+    type: action
+    subtype: 4_single
+    id: 4_single
+  - platform: device
+    device_id: !input remote
+    domain: mqtt
+    type: action
+    subtype: 4_double
+    id: 4_double
+  - platform: device
+    device_id: !input remote
+    domain: mqtt
+    type: action
+    subtype: 4_hold
+    id: 4_hold
+
+action:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id: 1_single
+        sequence: !input button_1_single
+      - conditions:
+          - condition: trigger
+            id: 1_double
+        sequence: !input button_1_double
+      - conditions:
+          - condition: trigger
+            id: 1_hold
+        sequence: !input button_1_hold
+      - conditions:
+          - condition: trigger
+            id: 2_single
+        sequence: !input button_2_single
+      - conditions:
+          - condition: trigger
+            id: 2_double
+        sequence: !input button_2_double
+      - conditions:
+          - condition: trigger
+            id: 2_hold
+        sequence: !input button_2_hold
+      - conditions:
+          - condition: trigger
+            id: 3_single
+        sequence: !input button_3_single
+      - conditions:
+          - condition: trigger
+            id: 3_double
+        sequence: !input button_3_double
+      - conditions:
+          - condition: trigger
+            id: 3_hold
+        sequence: !input button_3_hold
+      - conditions:
+          - condition: trigger
+            id: 4_single
+        sequence: !input button_4_single
+      - conditions:
+          - condition: trigger
+            id: 4_double
+        sequence: !input button_4_double
+      - conditions:
+          - condition: trigger
+            id: 4_hold
+        sequence: !input button_4_hold
